@@ -30,7 +30,7 @@
                 <td><?=$l->title?></td>
                 <td><?=$l->email?></td>
 				<td><?=$l->name_sub_theme?></td>
-                <td><?=$l->paper_upload?></td>
+                <td> <?php if(empty($l->paper_upload)){ echo "-"; }else{ ?> <a href="<?=base_url()?>assets/file_upload/<?=$l->paper_upload?>" target="_blank"> <i class="fa fa-file-pdf-o" aria-hidden="true"></i> </a> <?php } ?> </td>
 				<td>
 				<a href="#" class="ubah_fullpaper btn btn-warning btn-xs" id="<?=$l->id_fullpaper?>" style="text-decoration:none;"><i class="fa fa-pencil-square fa-lg" aria-hidden="true"></i> Ubah</a> <br> <a href="#" class="hapus_fullpaper btn btn-danger btn-xs" id="<?=$l->id_fullpaper?>" data-togle="modal" style="text-decoration:none;"><i class="fa fa-trash fa-lg" aria-hidden="true"></i> Hapus</a> 
                     
