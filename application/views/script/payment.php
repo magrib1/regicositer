@@ -1,29 +1,27 @@
 <script type="text/javascript">
     $(document).ready(function(){
-        //$('#tambah_fullpaper').modal();
+        //$('#tambah_payment').modal();
         //$('#action').val('tambah');
     });
 
-    $(document).on('click', '#tambah_mod_fullpaper', function(e){
+    $(document).on('click', '#tambah_mod_payment', function(e){
         e.preventDefault();
-        $('#tambah_fullpaper').modal();
+        $('#tambah_payment').modal();
         $('#action').val('tambah');
         $('#author').val('');
         $('#email').val('');
-        $('#title').val('');
-        $('#id_sub_theme').val('');
         $('#approve').val('');
     });
 
-    $(document).on('submit', '#form_fullpaper', function(e){
+    $(document).on('submit', '#form_payment', function(e){
         e.preventDefault();
         $('#notif_sukses').html('Loading...');
-        var data = new FormData(document.getElementById('form_fullpaper'));
+        var data = new FormData(document.getElementById('form_payment'));
         var action = $('#action').val();
 
         if(action == 'tambah'){
             $.ajax({
-                url : '<?=base_url()?>admin/fullpaper/tambah_fullpaper',
+                url : '<?=base_url()?>admin/payment/tambah_payment',
                 type : 'POST',
                 data : data,
                 processData: false, 
@@ -34,7 +32,7 @@
             });
         }else if(action == 'edit'){
             $.ajax({
-                url : '<?=base_url()?>admin/fullpaper/ubah_fullpaper',
+                url : '<?=base_url()?>admin/payment/ubah_payment',
                 type : 'POST',
                 data : data,
                 processData: false, 
@@ -47,14 +45,14 @@
 
     });
 
-    $(document).on('click', '.ubah_fullpaper', function(e){
+    $(document).on('click', '.ubah_payment', function(e){
         e.preventDefault();
         var id = $(this).attr('id');
-        $('#tambah_fullpaper').modal();
-        $('#id_fullpaper').val(id);
+        $('#tambah_payment').modal();
+        $('#id_payment').val(id);
         $('#action').val('edit');
         $.ajax({
-            url: '<?=base_url()?>admin/fullpaper/ambil_fullpaper',
+            url: '<?=base_url()?>admin/payment/ambil_payment',
             type: 'POST',
             data: 'id='+id,
             dataType: 'JSON',
@@ -68,13 +66,13 @@
         });
     });
 
-    $(document).on('click', '.hapus_file_fullpaper', function(e){
+    $(document).on('click', '.hapus_file_payment', function(e){
         e.preventDefault();
         var id = $(this).attr('id');
-        $('#hapus_file_fullpaper').modal();
-        $('#id_fullpaper').val(id);
+        $('#hapus_file_payment').modal();
+        $('#id_payment').val(id);
         $.ajax({
-            url: '<?=base_url()?>admin/fullpaper/ambil_file_fullpaper',
+            url: '<?=base_url()?>admin/payment/ambil_file_payment',
             type: 'POST',
             data: 'id='+id,
             dataType: 'JSON',
@@ -84,7 +82,7 @@
         });
     });
 
-    $(document).on('click', '.hapus_fullpaper', function(msg){
+    $(document).on('click', '.hapus_payment', function(msg){
         $('#modalHapus').modal();
         var id = $(this).attr('id');
         $('#id_hapus').val(id);
@@ -95,10 +93,10 @@
         location.reload();
     });
 
-    $(document).on('click', '.btn_hapus_fullpaper', function(e){
+    $(document).on('click', '.btn_hapus_payment', function(e){
         var id = $('#id_hapus').val();
         $.ajax({
-            url: '<?=base_url()?>admin/fullpaper/hapus_fullpaper',
+            url: '<?=base_url()?>admin/payment/hapus_payment',
             type: 'POST',
             data: 'id='+id,
             success: function(msg){

@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Fullpaper extends CI_Controller {
+class Payment extends CI_Controller {
 	public function __construct(){
 		parent::__construct();
 		$this->load->model('Model');
@@ -15,22 +15,20 @@ class Fullpaper extends CI_Controller {
 
 	public function index(){
 		$data = array(
-			'page' => 'fullpaper',
-			'link' => 'fullpaper',
-			'script' => 'script/fullpaper',
-			'list' => $this->Model->list_join('tb_fullpaper','tb_sub_theme','tb_fullpaper.id_sub_theme=tb_sub_theme.id_sub_theme'),
+			'page' => 'payment',
+			'link' => 'payment',
+			'script' => 'script/payment',
+			'list' => $this->Model->list_data_all('tb_payment'),
 			'list_sub' =>  $this->Model->list_data_all('tb_sub_theme'),
 		);
 		$this->load->view('template/wrapper', $data);
 	}
 
-	public function tambah_fullpaper(){
-		if (!is_uploaded_file($_FILES['paper_upload']['tmp_name'])) {
+	public function tambah_payment(){
+		if (!is_uploaded_file($_FILES['payment_upload']['tmp_name'])) {
 
 					$data = array(
 					'author' => $this->input->post('author',true),
-					'title' => $this->input->post('title',true),
-					'id_sub_theme' => $this->input->post('id_sub_theme', true),
 					'email' => $this->input->post('email', true),
 					'approve' => $this->input->post('approve',true),
 					'date_create' => date('Y-m-d H:i:s'),
@@ -38,21 +36,21 @@ class Fullpaper extends CI_Controller {
 
 					// var_dump($data);
 					// die();
-					$simpan_ticket = $this->Model->simpan_data($data, 'tb_fullpaper');
+					$simpan_ticket = $this->Model->simpan_data($data, 'tb_payment');
 					if($simpan_ticket){
 						echo '<div class="alert alert-success"><a href="#" class="close" data-dismiss="alert" arial-label="close"&times;</a>Berhasil disimpan !</div>';
-						echo '<script>window.location.href="'.base_url().'admin/fullpaper";</script>';
+						echo '<script>window.location.href="'.base_url().'admin/payment";</script>';
 					}else{
 						echo '<div class="alert alert-danger"><a href="#" class="close" data-dismiss="alert" arial-label="close">&times;</a>Gagal disimpan !</div>';
 					}
 
 			}else{
 				$config ['upload_path'] = './assets/file_upload';
-	            $config ['allowed_types'] = 'pdf|PDF|doc|DOC|docx|DOCX';
+	            $config ['allowed_types'] = 'jpeg|jpg|JPEG|png|PNG';
 	            $config ['max_size'] = '2048';
 	            //$config ['file_name'] = $this->input->post('kd_kategori').date('dmYHis');
 	            $this->upload->initialize($config);
-	            if ( ! $this->upload->do_upload('paper_upload')){
+	            if ( ! $this->upload->do_upload('payment_upload')){
 	                $error = $this->upload->display_errors();
 	                // var_dump($error);
 	                // die();
@@ -63,20 +61,18 @@ class Fullpaper extends CI_Controller {
 	                	$upload_data = $this->upload->data();
 						$data = array(
 							'author' => $this->input->post('author',true),
-							'title' => $this->input->post('title',true),
-							'id_sub_theme' => $this->input->post('id_sub_theme', true),
 							'email' => $this->input->post('email', true),
 							'approve' => $this->input->post('approve',true),
 							'date_create' => date('Y-m-d H:i:s'),
-							'paper_upload' => $upload_data['file_name']
+							'payment_upload' => $upload_data['file_name']
 						);
 						// var_dump($data);
 						// die();
 						
-						$simpan_ticket = $this->Model->simpan_data($data, 'tb_fullpaper');
+						$simpan_ticket = $this->Model->simpan_data($data, 'tb_payment');
 						if($simpan_ticket){
 							echo '<div class="alert alert-success"><a href="#" class="close" data-dismiss="alert" arial-label="close"&times;</a>Berhasil disimpan !</div>';
-							echo '<script>window.location.href="'.base_url().'admin/fullpaper";</script>';
+							echo '<script>window.location.href="'.base_url().'admin/payment";</script>';
 						}else{
 							echo '<div class="alert alert-danger"><a href="#" class="close" data-dismiss="alert" arial-label="close">&times;</a>Gagal disimpan !</div>';
 						}
@@ -84,20 +80,18 @@ class Fullpaper extends CI_Controller {
 			}
 	}
 
-	public function ambil_fullpaper(){
+	public function ambil_payment(){
 		$id = $this->input->post('id',true);
-		$data = $this->Model->ambil('id_fullpaper',$id,'tb_fullpaper')->row();
+		$data = $this->Model->ambil('id_payment',$id,'tb_payment')->row();
 		echo json_encode($data);
 	}
 
-	public function ubah_fullpaper(){
-		$id=$this->input->post('id_fullpaper', true);
-		if (!is_uploaded_file($_FILES['paper_upload']['tmp_name'])) {
+	public function ubah_payment(){
+		$id=$this->input->post('id_payment', true);
+		if (!is_uploaded_file($_FILES['payment_upload']['tmp_name'])) {
 
 					$data = array(
 					'author' => $this->input->post('author',true),
-					'title' => $this->input->post('title',true),
-					'id_sub_theme' => $this->input->post('id_sub_theme', true),
 					'email' => $this->input->post('email', true),
 					'approve' => $this->input->post('approve',true),
 					'date_create' => date('Y-m-d H:i:s'),
@@ -105,10 +99,10 @@ class Fullpaper extends CI_Controller {
 
 					// var_dump($data);
 					// die();
-					$ubah = $this->Model->update('id_fullpaper', $id, 'tb_fullpaper', $data);
+					$ubah = $this->Model->update('id_payment', $id, 'tb_payment', $data);
 					if($ubah){
 						echo '<div class="alert alert-success"><a href="#" class="close" data-dismiss="alert" arial-label="close"&times;</a>Berhasil disimpan !</div>';
-						echo '<script>window.location.href="'.base_url().'admin/fullpaper";</script>';
+						echo '<script>window.location.href="'.base_url().'admin/payment";</script>';
 					}else{
 						echo '<div class="alert alert-danger"><a href="#" class="close" data-dismiss="alert" arial-label="close">&times;</a>Gagal disimpan !</div>';
 					}
@@ -119,7 +113,7 @@ class Fullpaper extends CI_Controller {
 	            $config ['max_size'] = '2048';
 	            //$config ['file_name'] = $this->input->post('kd_kategori').date('dmYHis');
 	            $this->upload->initialize($config);
-	            if ( ! $this->upload->do_upload('paper_upload')){
+	            if ( ! $this->upload->do_upload('payment_upload')){
 	                $error = $this->upload->display_errors();
 	                // var_dump($error);
 	                // die();
@@ -135,15 +129,15 @@ class Fullpaper extends CI_Controller {
 							'email' => $this->input->post('email', true),
 							'approve' => $this->input->post('approve',true),
 							'date_create' => date('Y-m-d H:i:s'),
-							'paper_upload' => $upload_data['file_name']
+							'payment_upload' => $upload_data['file_name']
 						);
 						// var_dump($data);
 						// die();
 						
-						$ubah = $this->Model->update('id_fullpaper', $id, 'tb_fullpaper', $data);
+						$ubah = $this->Model->update('id_payment', $id, 'tb_payment', $data);
 						if($ubah){
 							echo '<div class="alert alert-success"><a href="#" class="close" data-dismiss="alert" arial-label="close"&times;</a>Berhasil disimpan !</div>';
-							echo '<script>window.location.href="'.base_url().'admin/fullpaper";</script>';
+							echo '<script>window.location.href="'.base_url().'admin/payment";</script>';
 						}else{
 							echo '<div class="alert alert-danger"><a href="#" class="close" data-dismiss="alert" arial-label="close">&times;</a>Gagal disimpan !</div>';
 						}
@@ -151,10 +145,10 @@ class Fullpaper extends CI_Controller {
 			}
 	}
 
-	public function hapus_fullpaper(){
+	public function hapus_payment(){
 		$id = $this->input->post('id', true);
-		//hapus tabel fullpaper
-		$hapus = $this->Model->hapus('id_fullpaper',$id,'tb_fullpaper');
+		//hapus tabel payment
+		$hapus = $this->Model->hapus('id_payment',$id,'tb_payment');
 		if($hapus){
 		echo '<div class="alert alert-success"><a href="#" class="close" data-dismiss="alert" arial-label="close">&times;</a> Berhasil dihapus !</div>';
             echo'<script>location.reload();</script>';

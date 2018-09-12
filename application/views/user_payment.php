@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="<?=base_url()?>assets/bootstrap/theme/bootstrap.min.css">
-    <title>Icositer FullPaper & Payment</title>
+    <title>Icositer Fullpaper & Payment</title>
     <!-- jQuery library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
     <script src="<?=base_url()?>assets/jquery-ui.min.js"></script>
@@ -35,45 +35,32 @@
   <body>
 <div class="panel panel-default">
 	<div class="panel-heading">
-		<i class="fa fa-list" aria-hidden="true"></i> Form Upload Fullpaper
+		<i class="fa fa-list" aria-hidden="true"></i> Form Upload Payment
        	
 	</div>
 	<div class="panel-body">
-		<form id="form_fullpaper" method="POST" >
+		<form id="form_payment" method="POST" >
                  <br>
                 <table class="table table-striped table-bordered table-hover">
                     <tr>
                         <th class="col-md-3">Author</th>
                         <td class="col-md-9"><input type="text" name="author" id="author" class="form-control" required></td>
                     </tr>
-                    <tr>
-                        <th class="col-md-3">Title</th>
-                        <td class="col-md-9"><input type="text" name="title" id="title" class="form-control"></td>
-                    </tr>
+                   
                     <tr>
                         <th class="col-md-3">E-Mail</th>
                         <td class="col-md-9">
-                        	<input type="mail" id="email" name="email" class="form-control">
+                            <input type="email" id="email" name="email" class="form-control">
                         </td>
                     </tr>
-                    <tr>
-                        <th class="col-md-3">Sub-Theme</th>
-                        <td class="col-md-9">
-                            <select name="id_sub_theme" id="id_sub_theme" class="form-control">
-                                <option value="">--- Pilih ---</option>
-                                <?php foreach($list_sub as $ll){ ?>
-                                <option value="<?=$ll->id_sub_theme ?>" ><?=$ll->name_sub_theme ?></option>
-                                <?php } ?>
-                            </select>
-                        </td>
-                    </tr>
+                    
                     <tr>
                         <th class="col-md-3">File</th>
                         <td class="col-md-9">
-                            <input type="file" id="paper_upload" name="paper_upload" class="form-control" required>
+                            <input type="file" id="payment_upload" name="payment_upload" class="form-control" required>
                         </td>
                     </tr>
-                  
+                    
                     <tr>
                         <td>
                             <div id="notif_sukses"></div>
@@ -81,7 +68,7 @@
                         <td>
                             <div style="float:right;">
                                 <input type="submit" name="simpan" value="Submit" class=" btn btn-warning">
-                                <input type="text" style="display: none" name="id_fullpaper" id="id_fullpaper"/>
+                                <input type="text" style="display: none" name="id_payment" id="id_payment"/>
                                 <input type="text" style="display: none" name="action" id="action"/>
                             </div>
                         </td>
@@ -93,19 +80,19 @@
 </body>
 <script type="text/javascript">
     $(document).ready(function(){
-        //$('#tambah_fullpaper').modal();
+        //$('#tambah_payment').modal();
         $('#action').val('tambah');
     });
 
-    $(document).on('submit', '#form_fullpaper', function(e){
+    $(document).on('submit', '#form_payment', function(e){
         e.preventDefault();
         $('#notif_sukses').html('Loading...');
-        var data = new FormData(document.getElementById('form_fullpaper'));
+        var data = new FormData(document.getElementById('form_payment'));
         var action = $('#action').val();
 
         if(action == 'tambah'){
             $.ajax({
-                url : '<?=base_url()?>user/fullpaper/tambah_fullpaper',
+                url : '<?=base_url()?>user/payment/tambah_payment',
                 type : 'POST',
                 data : data,
                 processData: false, 
@@ -116,7 +103,7 @@
             });
         }else if(action == 'edit'){
             $.ajax({
-                url : '<?=base_url()?>user/fullpaper/ubah_fullpaper',
+                url : '<?=base_url()?>user/payment/ubah_payment',
                 type : 'POST',
                 data : data,
                 processData: false, 

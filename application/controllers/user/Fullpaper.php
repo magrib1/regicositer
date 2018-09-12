@@ -7,7 +7,7 @@ class Fullpaper extends CI_Controller {
 		$this->load->model('Model');
 		$this->load->library('image_lib');
 		$this->load->library('upload');
-		
+
 	}
 
 	public function index(){
@@ -29,9 +29,19 @@ class Fullpaper extends CI_Controller {
 					'title' => $this->input->post('title',true),
 					'id_sub_theme' => $this->input->post('id_sub_theme', true),
 					'email' => $this->input->post('email', true),
-					'approve' => $this->input->post('approve',true),
 					'date_create' => date('Y-m-d H:i:s'),
 					);
+
+					$config_mail = Array(
+				         'protocol'  => 'smtp',
+				         'smtp_host' => 'smtp.gmail.com',
+				         'smtp_port' => 465,
+				         'smtp_user' => 'icositer2018_fullpaper@itera.ac.id', 
+				         'smtp_pass' => 'fullpaper', 
+				         'mailtype'  => 'html',
+				         'charset'  => 'iso-8859-1',
+				         'wordwrap'  => TRUE
+				      );
 
 					// var_dump($data);
 					// die();
@@ -44,9 +54,10 @@ class Fullpaper extends CI_Controller {
 					}
 
 			}else{
+
 				$config ['upload_path'] = './assets/file_upload';
 	            $config ['allowed_types'] = 'pdf|PDF|doc|DOC|docx|DOCX';
-	            $config ['max_size'] = '1024';
+	            $config ['max_size'] = '2048';
 	            //$config ['file_name'] = $this->input->post('kd_kategori').date('dmYHis');
 	            $this->upload->initialize($config);
 	            if ( ! $this->upload->do_upload('paper_upload')){
@@ -63,10 +74,56 @@ class Fullpaper extends CI_Controller {
 							'title' => $this->input->post('title',true),
 							'id_sub_theme' => $this->input->post('id_sub_theme', true),
 							'email' => $this->input->post('email', true),
-							'approve' => $this->input->post('approve',true),
 							'date_create' => date('Y-m-d H:i:s'),
 							'paper_upload' => $upload_data['file_name']
 						);
+
+						$config_mail = Array(
+					         'protocol'  => 'smtp',
+					         'mailpath'  => '/usr/sbin/sendmail',
+               				 'smtp_host' => 'ssl://smtp.gmail.com',
+					         'smtp_port' => 465,
+					         'smtp_user' => 'icositer2018_fullpaper@itera.ac.id', 
+					         'smtp_pass' => 'fullpaper', 
+					         'mailtype'  => 'html',
+					         'charset'  => 'iso-8859-1',
+					         'wordwrap'  => TRUE
+					      );
+						$sub_theme = $this->Model->ambil('id_sub_theme',$this->input->post('id_sub_theme', true),'tb_sub_theme')->row();
+
+						$message = '
+							   <h3 align="center">Full Paper Submission</h3>
+							    <table border="1" width="100%" cellpadding="5">
+							     <tr>
+							      <td width="30%">Author</td>
+							      <td width="70%">'.$this->input->post("author").'</td>
+							     </tr>
+							     <tr>
+							      <td width="30%">Title</td>
+							      <td width="70%">'.$this->input->post("title").'</td>
+							     </tr>
+							     <tr>
+							      <td width="30%">Email Address</td>
+							      <td width="70%">'.$this->input->post("email").'</td>
+							     </tr>
+							     <tr>
+							      <td width="30%">Sub-Theme</td>
+							      <td width="70%">'.$sub_theme->name_sub_theme.'</td>
+							     </tr>
+							    </table>
+							   ';
+
+						  $this->load->library('email');
+						  $this->email->initialize($config_mail);
+					      $this->email->set_newline("\r\n");
+					      $this->email->from($this->input->post('email', true));
+					      $this->email->to('ridhomagribi@gmail.com');
+					      $this->email->subject('Full Paper Submission');
+					         $this->email->message($message);
+					         $this->email->attach($upload_data['full_path']);
+					         $this->email->send();
+				              
+					         
 						// var_dump($data);
 						// die();
 						

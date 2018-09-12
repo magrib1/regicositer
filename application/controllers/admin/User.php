@@ -61,7 +61,7 @@ class User extends CI_Controller {
 		);
 		}
 
-		$ubah = $this->Model->update('id_login', $id, 'login', $data);
+		$ubah = $this->Model->update('id_login', $id, 'tb_login', $data);
 		if($ubah){
 			echo '<div class="alert alert-success"><a href="#" class="close" data-dismiss="alert" arial-label="close">&times;</a> Berhasil diupdate !</div>';
             echo'<script>location.reload();</script>';
