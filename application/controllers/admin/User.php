@@ -5,7 +5,7 @@ class User extends CI_Controller {
 	public function __construct(){
 		parent::__construct();
 		$this->load->model('Model');
-		if(!$this->session->userdata('is_login')) {
+		if(!$this->session->userdata('is_login') || $this->session->userdata('level') != 'admin')  {
             echo '<script>alert("Maaf, anda tidak boleh mengakses halaman ini")</script>';
             echo'<script>window.location.href="'.base_url().'";</script>';
         }
@@ -50,22 +50,18 @@ class User extends CI_Controller {
 
 		if ($this->input->post('password', true) == '') {
 			$data = array(
-			'nama_user' => $this->input->post('nama_user', true),
-			'no_hp' => $this->input->post('no_hp', true),
-			'e_mail' => $this->input->post('e_mail', true),
+			
 			'username' => $this->input->post('username', true)
 		);
 		}else{
 			$data = array(
-			'nama_user' => $this->input->post('nama_user', true),
-			'no_hp' => $this->input->post('no_hp', true),
-			'e_mail' => $this->input->post('e_mail', true),
+			
 			'username' => $this->input->post('username', true),
 			'password' => password_hash($this->input->post('password', true), PASSWORD_DEFAULT) ,
 		);
 		}
 
-		$ubah = $this->Model->update('id_user', $id, 'login', $data);
+		$ubah = $this->Model->update('id_login', $id, 'login', $data);
 		if($ubah){
 			echo '<div class="alert alert-success"><a href="#" class="close" data-dismiss="alert" arial-label="close">&times;</a> Berhasil diupdate !</div>';
             echo'<script>location.reload();</script>';
@@ -77,7 +73,7 @@ class User extends CI_Controller {
 	public function hapus_user(){
 		$id = $this->input->post('id', true);
 		//hapus tabel user
-		$hapus = $this->Model->hapus('id_user',$id,'login');
+		$hapus = $this->Model->hapus('id_login',$id,'login');
 		if($hapus){
 		echo '<div class="alert alert-success"><a href="#" class="close" data-dismiss="alert" arial-label="close">&times;</a> Berhasil dihapus !</div>';
             echo'<script>location.reload();</script>';
