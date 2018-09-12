@@ -48,7 +48,7 @@ class Fullpaper extends CI_Controller {
 					$simpan_ticket = $this->Model->simpan_data($data, 'tb_fullpaper');
 					if($simpan_ticket){
 						echo "<script>alert('File Submitted !');</script>";
-						echo '<script>window.location.href="'.base_url().'user/fullpaper";</script>';
+						echo'<script>location.reload();</script>';
 					}else{
 						echo '<div class="alert alert-danger"><a href="#" class="close" data-dismiss="alert" arial-label="close">&times;</a>Gagal disimpan !</div>';
 					}
@@ -130,7 +130,7 @@ class Fullpaper extends CI_Controller {
 						$simpan_ticket = $this->Model->simpan_data($data, 'tb_fullpaper');
 						if($simpan_ticket){
 							echo "<script>alert('File Submitted !');</script>";
-							echo '<script>window.location.href="'.base_url().'user/fullpaper";</script>';
+							eecho'<script>location.reload();</script>';
 						}else{
 							echo '<div class="alert alert-danger"><a href="#" class="close" data-dismiss="alert" arial-label="close">&times;</a>Gagal disimpan !</div>';
 						}
