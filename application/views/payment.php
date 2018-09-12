@@ -14,6 +14,7 @@
 					<th width="col-md-5">Author</th>
                     <th width="col-md-5">E-mail</th>
                     <th width="col-md-5">File</th>
+                    <th width="col-md-5">Waktu Upload</th>
 					<th width="col-md-1">Aksi</th>
 				</tr>
 			</thead>
@@ -27,6 +28,7 @@
 				<td><?=$l->author?></td>
                 <td><?=$l->email?></td>
                 <td> <?php if(empty($l->payment_upload)){ echo "-"; }else{ ?> <img src="<?=base_url()?>assets/file_upload/<?=$l->payment_upload?>" width="300px" class="img-thumbnail" > <?php } ?> </td>
+                <td><?=$l->date_create?></td>
 				<td>
 				<a href="#" class="ubah_payment btn btn-warning btn-xs" id="<?=$l->id_payment?>" style="text-decoration:none;"><i class="fa fa-pencil-square fa-lg" aria-hidden="true"></i> Ubah</a> <br> <a href="#" class="hapus_payment btn btn-danger btn-xs" id="<?=$l->id_payment?>" data-togle="modal" style="text-decoration:none;"><i class="fa fa-trash fa-lg" aria-hidden="true"></i> Hapus</a> 
                     
@@ -60,7 +62,7 @@
                     <tr>
                         <th class="col-md-3">E-Mail</th>
                         <td class="col-md-9">
-                        	<input type="mail" id="email" name="email" class="form-control">
+                        	<input type="email" id="email" name="email" class="form-control">
                         </td>
                     </tr>
                     

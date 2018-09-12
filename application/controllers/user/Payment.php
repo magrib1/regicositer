@@ -190,4 +190,12 @@ class Payment extends CI_Controller {
 
 	}
 
+	public function list_payment(){
+		$data = array(
+			'list' => $this->Model->list_data_all('tb_payment')
+		);
+
+		$this->load->view('user_listpayment',$data);
+	}
+
 }

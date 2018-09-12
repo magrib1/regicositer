@@ -35,7 +35,7 @@
   <body>
 <div class="panel panel-default">
 	<div class="panel-heading">
-		<i class="fa fa-list" aria-hidden="true"></i> Form Upload Fullpaper
+		<i class="fa fa-list" aria-hidden="true"></i> Form Upload Full Paper
        	
 	</div>
 	<div class="panel-body">
@@ -53,7 +53,7 @@
                     <tr>
                         <th class="col-md-3">E-Mail</th>
                         <td class="col-md-9">
-                        	<input type="mail" id="email" name="email" class="form-control">
+                        	<input type="email" id="email" name="email" class="form-control">
                         </td>
                     </tr>
                     <tr>
