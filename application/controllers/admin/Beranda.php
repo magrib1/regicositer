@@ -16,6 +16,10 @@ class Beranda extends CI_Controller {
 			'page' => 'beranda_admin',
 			'link' => 'beranda',
 			'script' => '',
+			'hitung_fullpaper' => $this->Model->default->query("SELECT COUNT(*) as jml FROM tb_fullpaper")->row(),
+			'fullpaper_approve' => $this->Model->default->query("SELECT COUNT(*) as jml FROM tb_fullpaper WHERE approve ='Approve' ")->row(),
+			'hitung_payment' => $this->Model->default->query("SELECT COUNT(*) as jml FROM tb_payment")->row(),
+			'payment_approve' => $this->Model->default->query("SELECT COUNT(*) as jml FROM tb_payment WHERE approve ='Approve' ")->row(),
 		);
 		$this->load->view('template/wrapper', $data);
 	}

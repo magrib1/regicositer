@@ -95,7 +95,7 @@ class Payment extends CI_Controller {
 						  $this->email->initialize($config_mail);
 					      $this->email->set_newline("\r\n");
 					      $this->email->from($this->input->post('email', true));
-					      $this->email->to('ridhomagribi@gmail.com');
+					      $this->email->to('icositer2018_payment@itera.ac.id');
 					      $this->email->subject('Payment Confirmation');
 					         $this->email->message($message);
 					         $this->email->attach($upload_data['full_path']);
