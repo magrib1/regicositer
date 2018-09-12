@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="<?=base_url()?>assets/bootstrap/theme/bootstrap.min.css">
-    <title>Sistem Informasi PPM Institut teknologi Sumatera</title>
+    <title>Icositer FullPaper & Payment</title>
     <!-- jQuery library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
     <script src="<?=base_url()?>assets/jquery-ui.min.js"></script>
@@ -45,7 +45,7 @@
             
         </div>
         <div class="col-md-5">
-          <h3>Sistem Informasi <br>Hibah Penelitian dan Pengabdian kepada Masyarakat</h3>
+          <h3>Icositer FullPaper & Payment</h3>
           <p><em>"Institut Teknologi Sumatera"</em></p>
         </div>
         <div class="col-md-6">

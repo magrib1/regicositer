@@ -12,31 +12,24 @@
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
         <li class="<?php if($link=='depan'){echo'active';}?>">
-          <?php if(!$this->session->userdata('is_login') || $this->session->userdata('level_repo') != 'admin'){ ?>
+          <?php if(!$this->session->userdata('is_login') || $this->session->userdata('level') != 'admin'){ ?>
           <a href="<?=base_url()?>depan">Home</a>
           <?php }else{?>
           <a href="<?=base_url()?>admin">Home</a>
           <?php }?>
         </li>
         </li>
-        <li class="<?php if($link=='about'){echo'active';}?>"><a href="<?=base_url()?>depan/about">About</a></li>
-        
+            
 
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <?php if(!$this->session->userdata('logged_in')){?>
-        
-        <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-log-in"></span> Login
-             <span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                    <li><a href="<?=base_url()?>login/login">As Author</a></li>
-                    <li><a href="<?=base_url()?>log_in">As Reviewer</a></li>
-                </ul>
-        </li>
+
+                    <li><a href="<?=base_url()?>log_in">Login</a></li>
+       
         <?php }else{?>
-        <li><a href="http://sso.itera.ac.id/"><span class="glyphicon glyphicon-user"></span> <?=$this->session->userdata('name')?></a></li>
-        <li><a href="<?=base_url()?>login/signout"><i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a></li>
+        <li><a href="http://sso.itera.ac.id/"><span class="glyphicon glyphicon-user"></span> <?=$this->session->userdata('username')?></a></li>
+        <li><a href="<?=base_url()?>log_in/signout"><i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a></li>
         <?php }?>
 
       </ul>

@@ -31,7 +31,7 @@ class Log_in extends CI_Controller {
 						'username'  => $cek_user->username,
 						'logged_in' => 'sukses',
                 		'is_login' => true,
-						'rule'     => $cek_user->level,
+						'level'     => $cek_user->level,
 					);
 					$this->session->set_userdata($data);
 					echo '<div class="alert alert-success"><a href="#" class="close" data-dismiss="alert" arial-label="close">&times;</a> User ditemukan, sedang menyambungkan !</div>';
