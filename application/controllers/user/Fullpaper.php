@@ -29,6 +29,7 @@ class Fullpaper extends CI_Controller {
 					'title' => $this->input->post('title',true),
 					'id_sub_theme' => $this->input->post('id_sub_theme', true),
 					'email' => $this->input->post('email', true),
+					'publication' => $this->input->post('publication', true),
 					'date_create' => date('Y-m-d H:i:s'),
 					);
 
@@ -74,6 +75,7 @@ class Fullpaper extends CI_Controller {
 							'title' => $this->input->post('title',true),
 							'id_sub_theme' => $this->input->post('id_sub_theme', true),
 							'email' => $this->input->post('email', true),
+							'publication' => $this->input->post('publication', true),
 							'date_create' => date('Y-m-d H:i:s'),
 							'paper_upload' => $upload_data['file_name']
 						);

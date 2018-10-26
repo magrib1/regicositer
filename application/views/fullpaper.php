@@ -15,6 +15,7 @@
 					<th width="col-md-5">Title</th>
                     <th width="col-md-5">E-mail</th>
                     <th width="col-md-5">Sub Theme</th>
+                    <th width="col-md-5">Publication</th>
                     <th width="col-md-5">File</th>
                     <th width="col-md-5">Waktu Upload</th>
 					<th width="col-md-1">Aksi</th>
@@ -31,6 +32,7 @@
                 <td><?=$l->title?></td>
                 <td><?=$l->email?></td>
 				<td><?=$l->name_sub_theme?></td>
+                <td><?=$l->publication?></td>
                 <td> <?php if(empty($l->paper_upload)){ echo "-"; }else{ ?> <a href="<?=base_url()?>assets/file_upload/<?=$l->paper_upload?>" target="_blank"> <i class="fa fa-file-pdf-o" aria-hidden="true"></i> </a> <?php } ?> </td>
                 <td><?=$l->date_create?></td>
 				<td>
@@ -80,6 +82,16 @@
                                 <?php foreach($list_sub as $ll){ ?>
                                 <option value="<?=$ll->id_sub_theme ?>" ><?=$ll->name_sub_theme ?></option>
                                 <?php } ?>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="col-md-3">Publication</th>
+                        <td class="col-md-9">
+                            <select name="publication" id="publication" class="form-control">
+                                <option value="">--- Pilih ---</option>
+                                <option value="JSAT/Jurnal Itera">JSAT/Jurnal Itera</option>
+                                <option value="Procceding IOP">Procceding IOP</option>
                             </select>
                         </td>
                     </tr>

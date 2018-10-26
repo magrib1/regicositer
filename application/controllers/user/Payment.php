@@ -27,6 +27,7 @@ class Payment extends CI_Controller {
 					$data = array(
 					'author' => $this->input->post('author',true),
 					'email' => $this->input->post('email', true),
+					'publication' => $this->input->post('publication', true),
 					'date_create' => date('Y-m-d H:i:s'),
 					);
 
@@ -42,7 +43,7 @@ class Payment extends CI_Controller {
 
 			}else{
 				$config ['upload_path'] = './assets/file_upload';
-	            $config ['allowed_types'] = 'jpeg|jpg|JPEG|png|PNG';
+	            $config ['allowed_types'] = 'jpeg|jpg|JPEG|png|PNG|pdf|PDF';
 	            $config ['max_size'] = '2048';
 	            //$config ['file_name'] = $this->input->post('kd_kategori').date('dmYHis');
 	            $this->upload->initialize($config);
@@ -58,6 +59,7 @@ class Payment extends CI_Controller {
 						$data = array(
 							'author' => $this->input->post('author',true),
 							'email' => $this->input->post('email', true),
+							'publication' => $this->input->post('publication', true),
 							'date_create' => date('Y-m-d H:i:s'),
 							'payment_upload' => $upload_data['file_name']
 						);
@@ -126,6 +128,7 @@ class Payment extends CI_Controller {
 					'author' => $this->input->post('author',true),
 					'email' => $this->input->post('email', true),
 					'approve' => $this->input->post('approve',true),
+					'publication' => $this->input->post('publication', true),
 					'date_create' => date('Y-m-d H:i:s'),
 					);
 
@@ -160,6 +163,7 @@ class Payment extends CI_Controller {
 							'id_sub_theme' => $this->input->post('id_sub_theme', true),
 							'email' => $this->input->post('email', true),
 							'approve' => $this->input->post('approve',true),
+							'publication' => $this->input->post('publication', true),
 							'date_create' => date('Y-m-d H:i:s'),
 							'payment_upload' => $upload_data['file_name']
 						);

@@ -67,6 +67,16 @@
                             </select>
                         </td>
                     </tr>
+                     <tr>
+                        <th class="col-md-3">Publication</th>
+                        <td class="col-md-9">
+                            <select name="publication" id="publication" class="form-control">
+                                <option value="">--- Pilih ---</option>
+                                <option value="JSAT/Jurnal Itera">JSAT/Jurnal Itera</option>
+                                <option value="Procceding IOP">Procceding IOP</option>
+                            </select>
+                        </td>
+                    </tr>
                     <tr>
                         <th class="col-md-3">File</th>
                         <td class="col-md-9">

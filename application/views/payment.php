@@ -13,6 +13,7 @@
 					<th width="col-md-1">No</th>
 					<th width="col-md-5">Author</th>
                     <th width="col-md-5">E-mail</th>
+                    <th width="col-md-5">Publication</th>
                     <th width="col-md-5">File</th>
                     <th width="col-md-5">Waktu Upload</th>
 					<th width="col-md-1">Aksi</th>
@@ -27,6 +28,7 @@
 				<td><?=$no++?></td>
 				<td><?=$l->author?></td>
                 <td><?=$l->email?></td>
+                <td><?=$l->publication?></td>
                 <td> <?php if(empty($l->payment_upload)){ echo "-"; }else{ ?> <img src="<?=base_url()?>assets/file_upload/<?=$l->payment_upload?>" width="300px" class="img-thumbnail" > <?php } ?> </td>
                 <td><?=$l->date_create?></td>
 				<td>
@@ -65,7 +67,16 @@
                         	<input type="email" id="email" name="email" class="form-control">
                         </td>
                     </tr>
-                    
+                    <tr>
+                        <th class="col-md-3">Publication</th>
+                        <td class="col-md-9">
+                            <select name="publication" id="publication" class="form-control">
+                                <option value="">--- Pilih ---</option>
+                                <option value="JSAT/Jurnal Itera">JSAT/Jurnal Itera</option>
+                                <option value="Procceding IOP">Procceding IOP</option>
+                            </select>
+                        </td>
+                    </tr>
                     <tr>
                         <th class="col-md-3">File</th>
                         <td class="col-md-9">
